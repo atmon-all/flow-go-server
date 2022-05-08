@@ -14,7 +14,7 @@ type service struct {
 }
 
 // Execute next flow node.
-func (service *service) GetData(ctx context.Context, request *nodego.ExecuteNextRequest) (*nodego.ExecuteNextResponse, error) {
+func (service *service) ExecuteNext(ctx context.Context, request *nodego.ExecuteNextRequest) (*nodego.ExecuteNextResponse, error) {
 	logrus.Infof("Received: %v", request)
 	return &nodego.ExecuteNextResponse{Code: 0, Message: "success"}, nil
 }
