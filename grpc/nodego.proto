@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.atmon.nodego.grpc";
+option go_package = "github.com/atmom/nodego/grpc";
+
+package nodego;
+
+// Services of atmon node server.
+service Nodego {
+    // Execute next flow node.
+    rpc ExecuteNext (ExecuteNextRequest) returns (ExecuteNextResponse) {}
+}
+
+// Execute next node request.
+message ExecuteNextRequest {
+    // Flow ID.
+    string flowId = 1;
+
+    // Flow version.
+    string version = 2;
+
+    // Current node.
+    FlowNode current = 3;
+
+    // Next node.
+    FlowNode next = 4;
+}
+
+// Execute next node response.
+message ExecuteNextResponse {
+    // Responsed code from data agent.
+    int32 code = 1;
+
+    // Responsed message from data agent.
+    string message = 2;
+}
+
+// Flow node.
+message FlowNode {
+    // Flow node ID.
+    string id = 1;
+
+    // Flow node name.
+    string name = 2;
+
+    // Flow node description.
+    string desc = 3;
+
+    // Flow node server type, values are 'Golang','Java' or 'NodeJS'.
+    string type = 4;
+
+    // Flow context define.
+    string context = 5;
+}
